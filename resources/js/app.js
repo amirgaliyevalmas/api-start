@@ -1,11 +1,15 @@
 import './bootstrap';
 import { createApp } from 'vue';
-
 import router from './router';
-import ExampleComponent from './components/department/DepartmentComponent.vue';
+
+import Toaster from "@meforma/vue-toaster";
 
 const app = createApp({});
-app.component('example-component', ExampleComponent);
+
 app.use(router);
 
 app.mount('#app');
+
+app.use(Toaster, {
+    position: "bottom-right",
+});

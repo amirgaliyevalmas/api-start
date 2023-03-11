@@ -25,7 +25,6 @@ class UpdateRequest extends FormRequest
             'id' => 'integer',
             'title_kz' => 'string',
             'title_ru' => 'string',
-            'page' => 'integer|required'
         ];
     }
 }

@@ -29,9 +29,11 @@
                                     <td>
                                         <button type="button" class="bg-transparent border-transparent fa fa-sliders-h text-blue" data-toggle="modal" data-target="#modal-default" @click="changeEditId(department)">
                                         </button>
+
                                         <UpdateFormComponent :editData = "editData" :modalview = 'modalview'>
 
                                         </UpdateFormComponent>
+
                                     </td>
                                 </tr>
                                 </tbody>
@@ -77,7 +79,6 @@
                     </div>
                 </div>
             </div>
-
         </template>
     </MainLayout>
 
@@ -96,7 +97,7 @@
         data(){
             return {
                 departments: {},
-                active: 'd-none',
+                active: 'active',
                 counter: 1,
                 editId: null,
                 editData:{},

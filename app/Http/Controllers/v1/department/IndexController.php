@@ -17,8 +17,7 @@ class IndexController extends Controller
 
     public function __invoke()
     {
-        $departments = Department::paginate(2);
-
+        $departments = Department::paginate(10);
 
         return DepartmentResource::collection($departments);
     }

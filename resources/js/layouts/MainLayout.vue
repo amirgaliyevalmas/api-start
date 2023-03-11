@@ -101,11 +101,15 @@
     import '../assets/plugins/fontawesome-free/css/all.min.css';
     import  '../assets/plugins/jqvmap/jqvmap.min.css';
     import  '../assets/dist/css/adminlte.min.css';
+    import  '../assets/dist/css/toaster.css';
+
     import  '../assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
     import  '../assets/plugins/daterangepicker/daterangepicker.css';
     import  '../assets/plugins/summernote/summernote-bs4.min.css';
     //AdminLte js
     import '../assets/plugins/jquery/jquery.min.js';
+    import '../assets/dist/js/toaster.min.js';
+
     import  '../assets/plugins/jquery-ui/jquery-ui.min.js'
     import '../assets/plugins/bootstrap/js/bootstrap.bundle.min.js';
     import '../assets/plugins/chart.js/Chart.min.js';

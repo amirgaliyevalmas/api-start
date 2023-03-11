@@ -49,7 +49,7 @@
 
                 <ul  class = 'nav nav-treeview'>
                     <li class="nav-item">
-                        <router-link    to="department" class="nav-link" active-class="active" >
+                        <router-link    to="employers" class="nav-link" active-class="active" >
                             <i class="far fa-circle nav-icon"></i>
                             <p>Сотрудники</p>
                         </router-link>
