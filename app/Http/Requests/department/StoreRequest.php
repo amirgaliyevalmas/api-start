@@ -24,7 +24,6 @@ class StoreRequest extends FormRequest
         return [
             'title_kz' => 'required',
             'title_ru' => 'required',
-            'page' => 'integer|required'
         ];
     }
     public function messages(): array

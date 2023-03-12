@@ -16,7 +16,5 @@ class StoreController extends Controller
         $department = $request->validated();
 
         Department::create($department);
-
-        return redirect()->route('department.index');
     }
 }

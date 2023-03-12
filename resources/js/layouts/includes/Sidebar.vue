@@ -40,7 +40,7 @@
 
             <li class="nav-item">
                 <router-link    to="#" class="nav-link" active-class="active" >
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="fa fa-users"></i>
                     <p>
                         Персонал
                         <i class="right fas fa-angle-left"></i>
@@ -66,7 +66,7 @@
 
             <li class="nav-item">
                 <router-link    to="#" class="nav-link" active-class="active" >
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-comment"></i>
                     <p>
                         Связь
                         <i class="right fas fa-angle-left"></i>
@@ -110,7 +110,7 @@
 
             <li class="nav-item">
                 <router-link    to="#" class="nav-link" active-class="active" >
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-qrcode"></i>
                     <p>
                         QR
                         <i class="right fas fa-angle-left"></i>
@@ -141,7 +141,7 @@
 
             <li class="nav-item">
                 <router-link    to="#" class="nav-link" active-class="active" >
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                     <p>
                         Статистика
                         <i class="right fas fa-angle-left"></i>
@@ -167,7 +167,7 @@
 
             <li class="nav-item">
                 <router-link    to="#" class="nav-link" active-class="active" >
-                    <i class="nav-icon fas fa-book"></i>
+                    <i class="nav-icon fas fa-book-medical"></i>
                     <p>
                         Врач
                         <i class="right fas fa-angle-left"></i>
@@ -191,6 +191,7 @@
             </li>
         </ul>
     </nav>
+
 
 
 </template>

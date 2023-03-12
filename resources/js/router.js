@@ -23,5 +23,7 @@ export default createRouter({
         {path: '/speciality', component: SpecialityComponent},
         {path: '/cabinet', component: CabinetComponent},
         {path: '/area', component: AreaComponent},
+        {path: '/employers', component: AreaComponent},
+
     ]
 })

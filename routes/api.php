@@ -29,8 +29,8 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 
     Route::namespace('App\Http\Controllers\v1')->prefix('v1')->group(function(){
         Route::prefix('department')->namespace('department')->group(function (){
-            Route::get('/', IndexController::class)->name('department.index');
             Route::post('/', StoreController::class)->name('department.store');
+            Route::get('/', IndexController::class)->name('department.index');
             Route::patch('/{department}', UpdateController::class)->name('department.update');
         });
     });

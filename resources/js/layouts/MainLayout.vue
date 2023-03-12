@@ -1,5 +1,5 @@
 <template>
-    <div class="hold-transition sidebar-mini layout-fixed" style="height: 100vh;">
+    <div class="hold-transition sidebar-mini layout-fixed" style="height: 100%;">
         <div class="wrapper">
 
 
@@ -48,7 +48,7 @@
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="height: 100vh">
+            <div class="content-wrapper" style="height: 100%; padding-bottom: 10px">
                 <!-- Content Header (Page header) -->
                 <div class="content-header">
                     <div class="container-fluid">
