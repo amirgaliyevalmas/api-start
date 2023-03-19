@@ -21,7 +21,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
             if (!Auth::attempt($credentials)) {
-                return $this->error('', 'Credential do not match', 401);
+                return $this->error('', 'Неверный логин и/или пароль', 401);
             }
 
         $user = User::where('email', $request->email)->first();
@@ -29,7 +29,6 @@ class AuthController extends Controller
         return $this->succes([
             'user' => $user,
             'token' => $user->createToken('Api token of ' . $user->name)->plainTextToken
-
         ]);
     }
 

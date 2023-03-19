@@ -9,6 +9,10 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = false;
     protected $table = 'departments';
+
+    public function spesialities(){
+        return $this->hasMany('department_id', 'id', Speciality::class);
+    }
 }

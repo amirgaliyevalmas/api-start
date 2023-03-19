@@ -15,7 +15,7 @@
     export default {
         components: {MainLayout},
         mounted() {
-            console.log('Component mounted.')
+
         }
     }
 </script>

@@ -22,9 +22,16 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'integer',
-            'title_kz' => 'string',
-            'title_ru' => 'string',
+            'title_kz' => 'required',
+            'title_ru' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title_kz.required' => 'Поле “Название отделения (KZ)” не заполнено',
+            'title_ru.required' => 'Поле “Название отделения (RU)” не заполнено',
         ];
     }
 }

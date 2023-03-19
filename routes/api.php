@@ -31,7 +31,17 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
         Route::prefix('department')->namespace('department')->group(function (){
             Route::post('/', StoreController::class)->name('department.store');
             Route::get('/', IndexController::class)->name('department.index');
+            Route::get('/all', 'IndexController@all')->name('department.all');
+            Route::get('/one/{id}', 'IndexController@getDepartment')->name('department.one');
             Route::patch('/{department}', UpdateController::class)->name('department.update');
+        });
+
+        Route::prefix('speciality')->namespace('speciality')->group(function (){
+            Route::post('/', IndexController::class)->name('speciality.index');
+            Route::post('/create', StoreController::class)->name('speciality.store');
+            Route::patch('/{speciality}', UpdateController::class)->name('speciality.update');
+            Route::get('/one/{id}', 'IndexController@one')->name('speciality.one');
+
         });
     });
 

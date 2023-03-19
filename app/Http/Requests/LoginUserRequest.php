@@ -23,8 +23,16 @@ class LoginUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required'],
             'password' => ['required']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => "Поле “Логин” не заполнено",
+            'password.required' => 'Поле “Пароль” не заполнено'
         ];
     }
 }

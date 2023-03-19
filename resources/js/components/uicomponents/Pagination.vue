@@ -11,10 +11,9 @@
                 записи
             </p>
         </div>
-
         <ul class="pagination">
             <li :class="meta.current_page !== 1 ? 'page-item':'page-item disabled'">
-                <a href="#" class="page-link" @click.prevent="$emit('getResults', meta.current_page-1)">Назад</a>
+                <router-link :to="{path: `/${current_route}/${meta.current_page-1}`}" class="page-link" @click.prevent="$emit('getResults', meta.current_page-1)">Назад</router-link>
             </li>
 
             <li  v-for="link in meta.links" :class="link.active ?  'active page-item' : 'page-item'">
@@ -22,24 +21,27 @@
                                   (meta.current_page - link.label < 2 && meta.current_page - link.label > -2) ||
                                Number(link.label) === 1 ||  Number(link.label) === meta.last_page
                                ">
-                    <a @click.prevent="$emit('getResults', link.label)"
-                       href="#" class="page-link">{{link.label}}</a>
+                    <router-link :to="{path: `/${current_route}/${link.label}`}" @click.prevent="$emit('getResults', link.label)"
+                        class="page-link">{{link.label}}</router-link>
                 </template>
             </li>
             <li :class="meta.current_page !== meta.last_page ? 'page-item':'page-item disabled'">
-                <a class="page-link" href="#" @click.prevent="$emit('getResults',meta.current_page+1)">Далее</a>
+                <router-link :to="{path: `/${current_route}/${meta.current_page+1}`}"  class="page-link"  @click.prevent="$emit('getResults',meta.current_page+1)">Далее</router-link>
             </li>
         </ul>
-
     </nav>
-
 </template>
 
 <script>
     export default {
-        props: ['meta'],
-        name: "PaginationComponent",
+        props: {
+            meta: {},
+            current_route: ""
+        },
+        name: "Pagination",
+
     }
+
 </script>
 
 <style scoped>

@@ -21,4 +21,14 @@ class IndexController extends Controller
 
         return DepartmentResource::collection($departments);
     }
+
+    public function all(){
+        $department = Department::all();
+        return DepartmentResource::collection($department);
+    }
+
+    public function getDepartment($id){
+        $department = Department::find($id);
+        return $department;
+    }
 }

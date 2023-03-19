@@ -28,4 +28,11 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'confirmed',Password::default()]
             ];
     }
+    public function messages()
+    {
+        return [
+            'email.required' => "Поле “Логин” не заполнено",
+            'password.required' => 'Поле “Пароль” не заполнено'
+        ];
+    }
 }

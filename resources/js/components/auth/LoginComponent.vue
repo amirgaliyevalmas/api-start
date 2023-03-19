@@ -7,6 +7,18 @@
                 <h2 class="text-center">Поликлиника</h2>
                 <hr>
                 <p class="login-box-msg">Войдите чтобы начать работу</p>
+                <small v-show="errorsVisible">
+                    <div class="alert alert-danger">
+                        <ul v-for="error in errors.errors">
+                                    {{error}}
+                        </ul>
+                        <ul v-if="errors.status">
+                            {{[errors.message]}}
+                        </ul>
+                    </div>
+
+                </small>
+
                 <form action="#" method="post">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Email" name="email" v-model="email">
@@ -25,6 +37,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -56,6 +69,8 @@
               email: null,
               password: null,
               remember: null,
+              errorsVisible: false,
+              errors: {},
           }
         },
         methods:{
@@ -66,7 +81,10 @@
                           if(r.status == '200'){
                               this.$router.push('/');
                           }
-                      })
+                      }).catch(res => {
+                          this.errorsVisible = true;
+                          this.errors  = res.response.data;
+                  })
               })
           },
         },
