@@ -1,12 +1,15 @@
-import  {createRouter, createWebHashHistory} from 'vue-router';
+import  {createRouter, createWebHistory} from 'vue-router';
 
 import IndexComponent from './components/IndexComponent.vue';
-
+import authenticate from './middleware/authenticate';
 import DepartmentComponent from './components/department/IndexDepartment.vue';
-import CabinetComponent from './components/cabinet/CabinetComponent.vue';
-import AreaComponent from './components/area/AreaComponent.vue';
-import LoginComponent from './components/auth/LoginComponent.vue';
 import IndexSpeciality from './components/speciality/IndexSpeciality.vue'
+import IndexCabinet from './components/cabinet/IndexCabinet.vue';
+
+import IndexArea from './components/area/IndexArea.vue';
+import IndexUser from './components/user/IndexUser.vue';
+
+import LoginComponent from './components/auth/LoginComponent.vue';
 
 
 
@@ -14,17 +17,28 @@ import IndexSpeciality from './components/speciality/IndexSpeciality.vue'
 
 
 
-export default createRouter({
-    history: createWebHashHistory(),
+
+
+const router = createRouter({
+    history: createWebHistory(),
     routes: [
-        {path: '/', component: IndexComponent},
-        {path: '/login', component: LoginComponent},
-
-        {path: '/department/:page?', component: DepartmentComponent},
+        {path: '/', component: IndexComponent, name: 'home'},
+        {path: `/login`, component: LoginComponent, name: 'login'},
+        {path: `/department/:page?`, component: DepartmentComponent, name: 'department'},
         {path: `/speciality/:page?`, component: IndexSpeciality},
+        {path: `/cabinet/:page?`, component: IndexCabinet},
+        {path: `/area/:page?`, component: IndexArea},
+        {path: `/user/:page?`, component: IndexUser},
+        {path: `/employers/:page?`, component: IndexArea},
+        {path: `/reset`, component: IndexArea},
 
-        {path: '/cabinet', component: CabinetComponent},
-        {path: '/area', component: AreaComponent},
-        {path: '/employers', component: AreaComponent},
-    ]
-})
+    ],
+});
+
+router.beforeEach((to, from, next) => {
+    authenticate(to, from, next)
+});
+
+
+export default router;
+

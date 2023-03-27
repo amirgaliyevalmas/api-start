@@ -29,11 +29,11 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 
     Route::namespace('App\Http\Controllers\v1')->prefix('v1')->group(function(){
         Route::prefix('department')->namespace('department')->group(function (){
-            Route::post('/', StoreController::class)->name('department.store');
-            Route::get('/', IndexController::class)->name('department.index');
+            Route::post('/', StoreController::class)->name('department.store')->middleware('can:create_department');
+            Route::get('/', IndexController::class)->name('department.index')->middleware('can:show_department');
             Route::get('/all', 'IndexController@all')->name('department.all');
             Route::get('/one/{id}', 'IndexController@getDepartment')->name('department.one');
-            Route::patch('/{department}', UpdateController::class)->name('department.update');
+            Route::patch('/{department}', UpdateController::class)->name('department.update')->middleware('can:edit_department');
         });
 
         Route::prefix('speciality')->namespace('speciality')->group(function (){
@@ -41,8 +41,32 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
             Route::post('/create', StoreController::class)->name('speciality.store');
             Route::patch('/{speciality}', UpdateController::class)->name('speciality.update');
             Route::get('/one/{id}', 'IndexController@one')->name('speciality.one');
-
         });
+
+        Route::prefix('cabinet')->namespace('cabinet')->group(function (){
+            Route::post('/', StoreController::class)->name('cabinet.store');
+            Route::get('/', IndexController::class)->name('cabinet.index');
+            Route::get('/all', 'IndexController@all')->name('cabinet.all');
+            Route::get('/one/{id}', 'IndexController@getCabinet')->name('cabinet.one');
+            Route::patch('/{cabinet}', UpdateController::class)->name('cabinet.update');
+        });
+
+        Route::prefix('area')->namespace('area')->group(function (){
+            Route::post('/', IndexController::class)->name('area.index');
+            Route::post('/create', StoreController::class)->name('area.store');
+            Route::patch('/{area}', UpdateController::class)->name('area.update');
+            Route::get('/one/{id}', 'IndexController@one')->name('area.one');
+        });
+
+        Route::prefix('user')->namespace('user')->group(function (){
+            Route::post('/', IndexController::class)->name('user.index');
+            Route::get('/one', 'IndexController@one')->name('user.one');
+
+            //       Route::post('/create', StoreController::class)->name('speciality.store');
+       //     Route::patch('/{speciality}', UpdateController::class)->name('speciality.update');
+         //   Route::get('/one/{id}', 'IndexController@one')->name('speciality.one');
+        });
+
     });
 
 

@@ -15,4 +15,8 @@ class Department extends Model
     public function spesialities(){
         return $this->hasMany('department_id', 'id', Speciality::class);
     }
+
+    public function areas(){
+        return $this->hasMany('department_id', 'id', Area::class);
+    }
 }

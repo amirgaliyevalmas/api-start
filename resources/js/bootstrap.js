@@ -7,12 +7,32 @@ import 'bootstrap';
  */
 
 import axios from 'axios';
+import  router from './router';
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.withCredentials = true;
 
+axios.interceptors.response.use({}, err => {
+    if(err.response.status === 401 || err.response.status === 419){
+        const token = localStorage.getItem('x-xsrf-token');
+        if(token){
+            localStorage.removeItem('x-xsrf-token')
+        }
+        router.push({name: 'login'});
+    }
+    if(err.response.status === 403){
+        router.push({name: 'home'});
+        toastr.error('У вас нет доступа к этой странице');
 
+    }
+        return Promise.reject(err);
+
+
+    }
+
+
+);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

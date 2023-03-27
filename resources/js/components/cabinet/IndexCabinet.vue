@@ -8,10 +8,6 @@
             <div class="container">
                 <div class="col-md-12">
                     <div class="card">
-            {{can('edit_department','DepartmentComponent')}}
-                        <div v-if="can('edit_department','DepartmentComponent')">
-                                tets
-                        </div>
                         <div class="card-header d-flex justify-content-end">
                             <button class="btn btn-block bg-gradient-primary col-md-1"  data-toggle="modal"
                                     data-target="#modal-create"> Создать</button>
@@ -22,19 +18,21 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Номер кабинета</th>
                                     <th>Название отделения (RU)</th>
                                     <th>Название отделения (KZ)</th>
                                     <th>Действие</th>
                                 </tr>
                                 </thead>
-                                <tbody v-for="department in departments" :key="department.id">
+                                <tbody v-for="cabinet in cabinets" :key="cabinet.id">
                                 <tr>
-                                    <td>{{department.id}}</td>
-                                    <td>{{department.title_ru}}</td>
-                                    <td>{{department.title_kz}}</td>
+                                    <td>{{cabinet.id}}</td>
+                                    <td>{{cabinet.cabinet_name}}</td>
+                                    <td>{{cabinet.title_ru}}</td>
+                                    <td>{{cabinet.title_kz}}</td>
                                     <td>
                                         <button type="button" class="bg-transparent border-transparent text-blue"
-                                                data-toggle="modal" data-target="#modal-edit" @click="changeEditData(department)">
+                                                data-toggle="modal" data-target="#modal-edit" @click="changeEditData(cabinet)">
                                         <img src="../../assets/img/sliders.svg" alt="" style="width: 30px; height: 30px">
                                         </button>
                                     </td>
@@ -47,9 +45,9 @@
                 </div>
             </div>
 
-            <CreateDepartment @refresh = refresh></CreateDepartment>
+            <CreateCabinet @refresh = refresh></CreateCabinet>
 
-            <UpdateDepartment :editData = editData @refresh = refresh></UpdateDepartment>
+            <UpdateCabinet :editData = editData @refresh = refresh></UpdateCabinet>
 
             <LoaderComponent :loading = loading></LoaderComponent>
         </template>
@@ -59,18 +57,17 @@
 
 <script>
 
-    import useDepartment from "./hooks/department";
+    import useCabinet from "./hooks/cabinet";
     import {onMounted, ref} from "vue";
     import {useRoute} from "vue-router"
     import Pagination from "../uicomponents/Pagination.vue";
     import MainLayout from "../../layouts/MainLayout.vue";
     import LoaderComponent from "../uicomponents/LoaderComponent.vue";
-    import CreateDepartment from "./CreateDepartment.vue";
-    import UpdateDepartment from "./UpdateDepartment.vue";
-    import { useAbility } from '@casl/vue';
+    import CreateCabinet from "./CreateCabinet.vue";
+    import UpdateCabinet from "./UpdateCabinet.vue";
 
 export default {
-    components: {Pagination,MainLayout,LoaderComponent,CreateDepartment,UpdateDepartment},
+    components: {Pagination,MainLayout,LoaderComponent,CreateCabinet,UpdateCabinet},
 
     props: {
         page: {
@@ -80,14 +77,12 @@ export default {
     },
 
     setup(props) {
-        const { can } = useAbility();
-        console.log(can('edit_department','DepartmentComponent'));
         let loading = ref(false);
-        const {meta,current_route, departments, getDepartments, editData} = useDepartment();
+        const {meta,current_route, cabinets, getCabinets, editData} = useCabinet();
         const route = useRoute();
 
-        function changeEditData(department) {
-            editData.value = department;
+        function changeEditData(cabinet) {
+            editData.value = cabinet;
         }
 
         onMounted(() => {
@@ -95,16 +90,16 @@ export default {
         });
         async function refresh() {
             loading.value = true;
-            await getDepartments(route.params.page || props.page );
+            await getCabinets(route.params.page || props.page );
             loading.value = false;
         }
         async function getResults(page) {
             loading.value = true;
-            await getDepartments(page);
+            await getCabinets(page);
             loading.value = false;
         }
 
-        return {departments, loading, editData, meta, current_route, getResults,changeEditData, refresh, can}
+        return {cabinets, loading, editData, meta, current_route, getResults,changeEditData, refresh}
     }
     }
 </script>

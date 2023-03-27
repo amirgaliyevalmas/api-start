@@ -3,7 +3,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">ADMIN PANEL</li>
             <li class="nav-item">
-                <router-link    to="#" class="nav-link" active-class="active" >
+                <router-link   to="#" class="nav-link" active-class="active" >
                     <i class="nav-icon fas fa-book"></i>
                     <p>
                         Справочники
@@ -55,7 +55,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link    to="/area" class="nav-link" active-class="active">
+                        <router-link    to="/reset" class="nav-link" active-class="active">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Сброс пороля</p>
                         </router-link>

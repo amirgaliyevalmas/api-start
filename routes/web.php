@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{vue?}', function () {
     return view('index');
-})->name('index');
-
-
-Route::get('/{vue_capture?}', function () {
-    return view('index');
-})->where('vue_capture', '.*');
+})->where('vue', '[\/\w\.-]*')->name('index');

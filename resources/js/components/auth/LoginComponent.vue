@@ -79,7 +79,8 @@
                   axios.post('/api/login', {email: this.email, password: this.password})
                       .then(r => {
                           if(r.status == '200'){
-                              this.$router.push('/');
+                              localStorage.setItem('x-xsrf-token', r.config.headers['X-XSRF-TOKEN']);
+                              this.$router.go({name: 'home'});
                           }
                       }).catch(res => {
                           this.errorsVisible = true;
